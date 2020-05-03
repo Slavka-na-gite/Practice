@@ -1,7 +1,9 @@
+import SQRcomplex
 import numpy as np
 import scipy.io as sc
 import scipy.signal
 import matplotlib.pyplot as plt
+
 
 
 def plot(A, a, b):
@@ -24,8 +26,12 @@ def dft_map(X, Fs):
     return f, Y
 
 
-file = sc.loadmat("100mq.mat")
+file = sc.loadmat("105m.mat")
 amplitude1 = np.array(file['val'][0])
+signal = 216000
+amplitude = amplitude1[0:signal]
+SQRcomplex.QRS.plot(amplitude1,4)#выделение и вывод n-ого QRS комплекса
+
 
 X = np.fft.fft(amplitude1[0:1800])
 Y = np.fft.fft(amplitude1[503000:504800])#участок сигнала с искажением
